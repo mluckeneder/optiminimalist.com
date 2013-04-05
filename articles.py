@@ -4,33 +4,45 @@ import markdown2
 import time
 
 
-def load(article_location="./articles/*.md"):
-    """loads articles from directory"""
-    article_files = glob.glob(article_location)
-    articles = {}
+class Loader:
+    """loads articles"""
+    def __init__(self, path="./articles/*.md"):
+        self.path = path
 
-    for article in article_files:
-        with open(article) as content:
-            fname = article.split("/")[-1].split(".")[0]
-            articles[fname] = content.read()
+        raw_articles = self.load_articles(path)
+        self.articles = self.compile_article_list(raw_articles)
 
-    return articles
+    def get_articles(self):
+        return self.articles
 
+    def get_article(self, article_id):
+        return self.articles[article_id]
 
-def compile_article(article):
-    """compiles an article from raw input into a useable format"""
-    html = markdown2.markdown(article, extras=["metadata"])
-    metadata = html.metadata
+    def load_articles(self, article_location):
+        """loads articles from directory"""
+        article_files = glob.glob(article_location)
+        articles = {}
 
-    converted_date = time.strptime(metadata["date"], "%d/%m/%Y")
-    metadata["date"] = converted_date
-    metadata["text"] = str(html)
-    return metadata
+        for article in article_files:
+            with open(article) as content:
+                fname = article.split("/")[-1].split(".")[0]
+                articles[fname] = content.read()
 
+        return articles
 
-def compile_article_list(articles):
-    """compiles the above list into ready to publish format"""
-    return {id: compile_article(article) for id, article in articles.items()}
+    def compile_article(self, article):
+        """compiles an article from raw input into a useable format"""
+        html = markdown2.markdown(article, extras=["metadata"])
+        metadata = html.metadata
+
+        converted_date = time.strptime(metadata["date"], "%d/%m/%Y")
+        metadata["date"] = converted_date
+        metadata["text"] = str(html)
+        return metadata
+
+    def compile_article_list(self, articles):
+        """compiles the above list into ready to publish format"""
+        return {id: self.compile_article(article) for id, article in articles.items()}
 
 
 if __name__ == "__main__":
