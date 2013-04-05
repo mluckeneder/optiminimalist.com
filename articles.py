@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import glob
 import markdown2
 import time

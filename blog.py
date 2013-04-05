@@ -1,4 +1,5 @@
-from bottle import route, run
+# -*- coding: utf-8 -*-
+from bottle import route, run, debug
 #from bottle import cheetah_view as view
 from bottle import cheetah_template as template
 import articles
@@ -17,4 +18,5 @@ def contact():
     """contact me page"""
     return template("this is cool")
 
-run(server='gunicorn', port=os.environ.get('PORT', 5000))
+debug(True)
+run(server='gunicorn', port=os.environ.get('PORT', 5000), reloader=True)
