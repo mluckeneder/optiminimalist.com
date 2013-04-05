@@ -19,4 +19,4 @@ def contact():
     return template("this is cool")
 
 debug(True)
-run(server='gunicorn', port=os.environ.get('PORT', 5000), reloader=True)
+run(server='gunicorn', host="0.0.0.0", port=os.environ.get('PORT', 5000), reloader=True)
