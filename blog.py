@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-from bottle import Bottle, debug, static_file
+from bottle import Bottle, debug, static_file, response
 from bottle import cheetah_template
 import articles
 import os
-
-app = Bottle()
 
 
 def template_layout(template, *args, **kwargs):
@@ -15,8 +13,16 @@ def template_layout(template, *args, **kwargs):
     return cheetah_template("layout", *args, **kwargs_more)
 
 
+app = Bottle()
+
+@app.route('/robots.txt')
+def serve_robots():
+    """serves the robots.txt file"""
+    response.content_type = 'text/plain'
+    return open("robots.txt").read()
+
 @app.route('/static/<filename:path>')
-def server_static(filename):
+def serve_static(filename):
     return static_file(filename, root='./static')
 
 
@@ -24,21 +30,20 @@ def server_static(filename):
 def article(slug):
     """the page for a single article"""
     article = loader.get_article(slug)
-    return template_layout("article", article=article)
+    next_article = loader.get_next_article(slug)
+    prev_article = loader.get_prev_article(slug)
+
+    return template_layout("article", article=article,
+                           prev_article=prev_article,
+                           next_article=next_article)
 
 
 @app.route('/')
 def index():
     """the index page"""
     arts = loader.get_all_articles()
-    print(arts.keys())
     return template_layout("index", articles=arts)
 
-
-@app.route('/contact')
-def contact():
-    """contact me page"""
-    return "cool"
 
 if __name__ == "__main__":
     loader = articles.Loader()

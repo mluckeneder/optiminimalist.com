@@ -10,8 +10,9 @@ class Loader:
         self.path = path
         raw_articles = self.load_articles(path)
         self.articles = self.compile_article_list(raw_articles)
-        self.article_index = self.indexify_article_list_index(self.compile_article_list_index(
-            self.articles))
+        self.articles_index = self.compile_article_index(self.articles)
+        # self.article_index = self.indexify_article_list_index(self.compile_article_list_index(
+            # self.articles))
 
     def compile_article_list_index(self, articles):
         return {article["raw_date"]: article
@@ -21,9 +22,29 @@ class Loader:
         """get all articles"""
         return self.articles
 
-    def get_article(self, article_id):
-        """get an article with a certain id"""
-        return self.articles[article_id]
+    def get_article(self, article_slug):
+        """get an article with a certain slug"""
+        return self.articles[article_slug]
+
+    def get_next_article(self, article_slug):
+        """returns the next article of a certain slug"""
+        index = self.articles_index.index(article_slug)
+
+        if index == 0:
+            return None
+        else:
+            key = self.articles_index[index-1]
+            return self.articles[key]
+
+    def get_prev_article(self, article_slug):
+        """returns the previous article of a certain slug"""
+        index = self.articles_index.index(article_slug)
+
+        if index == len(self.articles_index)-1:
+            return None
+        else:
+            key = self.articles_index[index+1]
+            return self.articles[key]
 
     def load_articles(self, article_location):
         """loads articles from directory"""
@@ -37,23 +58,23 @@ class Loader:
 
         return articles
 
-    def indexify_article_list_index(self, articles, index=2):
-        """parses dates from article_index"""
-        if index < 0:
-            return {a["id"]: a for _, a in articles.items()}
+    # def indexify_article_list_index(self, articles, index=2):
+    #     """parses dates from article_index"""
+    #     if index < 0:
+    #         return {a["id"]: a for _, a in articles.items()}
 
-        new_articles = defaultdict(dict)
-        temp_articles = defaultdict(dict)
+    #     new_articles = defaultdict(dict)
+    #     temp_articles = defaultdict(dict)
 
-        for key, article in articles.items():
-            key_component = key.split("/")[index]
-            temp_articles[key_component][key] = article
+    #     for key, article in articles.items():
+    #         key_component = key.split("/")[index]
+    #         temp_articles[key_component][key] = article
 
-        for key, article in temp_articles.items():
-            temp_articles[key] = self.indexify_article_list_index(
-                article, index-1)
+    #     for key, article in temp_articles.items():
+    #         temp_articles[key] = self.indexify_article_list_index(
+    #             article, index-1)
 
-        return dict(temp_articles)
+    #     return dict(temp_articles)
 
     def compile_article(self, id, article):
         """compiles an article from raw input into a useable format"""
@@ -73,10 +94,9 @@ class Loader:
                     for id, article in articles.items()}
 
         # sort articles
-        return OrderedDict(sorted(articles.items(),
-                                  key=lambda k: k[1]["date"], reverse=True))
+        sorted_articles = OrderedDict(sorted(articles.items(),
+                                      key=lambda k: k[1]["date"], reverse=True))
+        return sorted_articles
 
-if __name__ == "__main__":
-    from pprint import pprint
-    l = Loader()
-    pprint(dict(l.indexify_article_list_index(l.article_index)))
+    def compile_article_index(self, articles):
+        return [k for (k, v) in articles.items()]
