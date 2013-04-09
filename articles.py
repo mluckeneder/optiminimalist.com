@@ -1,21 +1,28 @@
-# -*- coding: utf-8 -*-
 import glob
 import markdown2
 import time
+from collections import OrderedDict, defaultdict
 
 
 class Loader:
     """loads articles"""
     def __init__(self, path="./articles/*.md"):
         self.path = path
-
         raw_articles = self.load_articles(path)
         self.articles = self.compile_article_list(raw_articles)
+        self.article_index = self.indexify_article_list_index(self.compile_article_list_index(
+            self.articles))
 
-    def get_articles(self):
+    def compile_article_list_index(self, articles):
+        return {article["raw_date"]: article
+                for id, article in articles.items()}
+
+    def get_all_articles(self):
+        """get all articles"""
         return self.articles
 
     def get_article(self, article_id):
+        """get an article with a certain id"""
         return self.articles[article_id]
 
     def load_articles(self, article_location):
@@ -30,22 +37,46 @@ class Loader:
 
         return articles
 
-    def compile_article(self, article):
+    def indexify_article_list_index(self, articles, index=2):
+        """parses dates from article_index"""
+        if index < 0:
+            return {a["id"]: a for _, a in articles.items()}
+
+        new_articles = defaultdict(dict)
+        temp_articles = defaultdict(dict)
+
+        for key, article in articles.items():
+            key_component = key.split("/")[index]
+            temp_articles[key_component][key] = article
+
+        for key, article in temp_articles.items():
+            temp_articles[key] = self.indexify_article_list_index(
+                article, index-1)
+
+        return dict(temp_articles)
+
+    def compile_article(self, id, article):
         """compiles an article from raw input into a useable format"""
         html = markdown2.markdown(article, extras=["metadata"])
         metadata = html.metadata
+        metadata["raw_date"] = metadata["date"]
 
         converted_date = time.strptime(metadata["date"], "%d/%m/%Y")
         metadata["date"] = converted_date
-        metadata["text"] = str(html)
+        metadata["text"] = html
+        metadata["id"] = id
         return metadata
 
     def compile_article_list(self, articles):
         """compiles the above list into ready to publish format"""
-        return {id: self.compile_article(article) for id, article in articles.items()}
+        articles = {id: self.compile_article(id, article)
+                    for id, article in articles.items()}
 
+        # sort articles
+        return OrderedDict(sorted(articles.items(),
+                                  key=lambda k: k[1]["date"], reverse=True))
 
 if __name__ == "__main__":
-    articles = compile_article_list(load())
-
-    print(articles)
+    from pprint import pprint
+    l = Loader()
+    pprint(dict(l.indexify_article_list_index(l.article_index)))

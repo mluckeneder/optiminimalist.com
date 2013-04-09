@@ -1,8 +1,18 @@
 #import time
 #for $id, $article in $articles.items():
-  #* Parse date *#
-  #set $date = $time.strftime("%A, %d %B %Y", $article.date)
-  <b>Date:</b> $date</br> 
-  <h1>$article.title</h1> (by $article.author)
-  <hr />
+ 
+
+#* Parse date *#
+#set $date = $time.strftime("%B %Y", $article.date)
+<article id="post_1">
+            <header class="blog_header">
+              <h3><a href="/$id">$article.title</a></h3>
+              <span class="date">$date</span>
+            </header>
+
+            <section class="content">
+                <!-- $article.text -->
+            </section>
+
+          </article>
 #end for

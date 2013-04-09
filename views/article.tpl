@@ -1,6 +1,11 @@
 #import time
 #* Parse date *#
-#set $date = $time.strftime("%A, %d %B %Y", $article.date)
-<b>Date:</b> $date</br> 
-<h1>$article.title</h1>
-$article.text (by $article.author)
+#set $date = $time.strftime("%B %Y", $article.date)
+<article id="post_1">
+            <header class="blog_header">
+              <h2>$article.title</h2>
+              <span class="date">$date</span>
+            </header>
+
+            $article.text
+          </article>
