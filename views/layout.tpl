@@ -83,7 +83,7 @@
       <hr>
 
       <div class="footer">
-        <p>&copy; Michael Luckeneder</p>
+        <p>&copy; 2013 optiminimalist.com</p>
       </div>
 
     </div> <!-- /container -->
