@@ -7,7 +7,7 @@
             </header>
 
             <section class="content">
-                $article.text
+                $article.content
             </section>
 
            <!--  <div id="disqus_thread"></div>
@@ -30,13 +30,13 @@
          <section id="article_nav">
          <div id="prev_article" class="pull-left">
           #if $prev_article is not None
-             <a href="/$prev_article.id" >&larr; $prev_article.title</a>
+             <a href="/$prev_article.id" >&larr; $prev_article.article.title</a>
           #end if
          </div>
 
           <div id="next_article" class="pull-right">
           #if $next_article is not None
-             <a href="/$next_article.id" >$next_article.title &rarr;</a>
+             <a href="/$next_article.id" >$next_article.article.title &rarr;</a>
           #end if
           </div>
       </section>

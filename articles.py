@@ -78,7 +78,7 @@ class Loader:
 
     def compile_article(self, id, article):
         """compiles an article from raw input into a useable format"""
-        html = markdown2.markdown(article, extras=["metadata"])
+        html = markdown2.markdown(article, extras=["metadata", "footnotes"])
         metadata = html.metadata
         metadata["raw_date"] = metadata["date"]
 

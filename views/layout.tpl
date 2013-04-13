@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap 101 Template</title>
+    <title>
+
+      #if $pagetitle is not None
+        $pagetitle by 
+      #end if
+      optiminimalist.com
+
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://code.jquery.com/jquery.js"></script>
     <!-- Bootstrap -->
@@ -14,17 +21,18 @@
 
     <div class="container">
 
+
       <!-- Example row of columns -->
       <div class="row">
         
         <div class="">
-<header id="header">
+        <header id="header">
         <div class="pull-left">
-          <a href="http://www.optiminimalist.com">optiminimalist.com</a>
+          <a href="/">optiminimalist.com</a>
         </div>
 
         <div class="pull-right">
-          <a href="http://www.optiminimalist.com">@optiminimalist</a>
+          <a href="http://www.optiminimalist.com">rss</a>
         </div>
       </header>
           $layout_yield

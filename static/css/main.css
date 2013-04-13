@@ -68,3 +68,7 @@
       #article_nav {
         padding-top:30px;
       }
+
+      .footnotes p, .footnotes li{
+        font-size:0.8em;
+      }
