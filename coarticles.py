@@ -67,24 +67,39 @@ class ArticleParser:
             target.send((article_slug, article))
 
     @coroutine
+    def parse_tags(self, target):
+        while True:
+            article_slug, article = (yield)
+            if "tags" in article:
+                tags = article["tags"].split(",")
+                article["tags"] = [t.strip() for t in tags]
+
+            target.send((article_slug, article))
+
+
+    @coroutine
     def extract_title(self, target):
         while True:
             article_slug, article = (yield)
 
-            regex = r'\#(.+?)\n'
-            match = re.match(regex, article["content"])
+            regex = re.compile(".*\# (.+?)\n", re.MULTILINE)
+            match = re.search(regex, article["content"])
+
             if match:
                 title = match.group(1).strip()
+                print(title)
                 article["title"] = title
-                article["content"] =re.sub(r'(\#.+?\n)\s*?(.*)', "\2", article["content"])
+                article["content"] = re.sub(r'(\#.+?\n)\s*?(.*)',
+                                            "\2", article["content"])
                 article["content"] = re.sub("\x02", "", article["content"])
 
-                target.send((article_slug, article))
+            target.send((article_slug, article))
 
     def run_pipeline(self, source, *args):
         sink = broadcast(args)
         date_parser = self.parse_date(sink)
-        markdown_parser = self.parse_markdown(date_parser)
+        tag_parser = self.parse_tags(date_parser)
+        markdown_parser = self.parse_markdown(tag_parser)
         extract_title = self.extract_title(markdown_parser)
         article_reader = self.article_reader(extract_title)
         self.parse_article_list(source, article_reader)
@@ -151,58 +166,3 @@ if __name__ == "__main__":
 
     parser.run_pipeline(glob("articles/*.md"),
                         manager.add_article())
-# class Loader:
-#     """loads articles"""
-#     def __init__(self, path="./articles/*.md"):
-#         self.path = path
-#         self.articles = self.compile_article_list(raw_articles)
-#         self.articles_index = self.compile_article_index(self.articles)
-        
-
-#     def compile_article_list_index(self, articles):
-#         return {article["raw_date"]: article
-#                 for id, article in articles.items()}
-
-#     def get_all_articles(self):
-#         """get all articles"""
-#         return self.articles
-
-#     def get_article(self, article_slug):
-#         """get an article with a certain slug"""
-#         return self.articles[article_slug]
-
-#     def get_next_article(self, article_slug):
-#         """returns the next article of a certain slug"""
-#         index = self.articles_index.index(article_slug)
-
-#         if index == 0:
-#             return None
-#         else:
-#             key = self.articles_index[index-1]
-#             return self.articles[key]
-
-#     def get_prev_article(self, article_slug):
-#         """returns the previous article of a certain slug"""
-#         index = self.articles_index.index(article_slug)
-
-#         if index == len(self.articles_index)-1:
-#             return None
-#         else:
-#             key = self.articles_index[index+1]
-#             return self.articles[key]
-
-
-
-
-#     def compile_article_list(self, articles):
-#         """compiles the above list into ready to publish format"""
-#         articles = {id: self.compile_article(id, article)
-#                     for id, article in articles.items()}
-
-#         # sort articles
-#         sorted_articles = OrderedDict(sorted(articles.items(),
-#                                       key=lambda k: k[1]["date"], reverse=True))
-#         return sorted_articles
-
-#     def compile_article_index(self, articles):
-#         return [k for (k, v) in articles.items()]

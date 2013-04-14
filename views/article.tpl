@@ -1,9 +1,28 @@
+<style type="text/css">
+  .taglist li{
+    display:inline;
+  }
+
+  .taglist {
+    display:inline;
+    margin-left: 0;
+  }
+</style>
 #import time
 #set $date = $time.strftime("%B %Y", $article.date)
 <article id="post_1">
             <header class="blog_header">
-              <h3>$article.title</h3>
+              <h2>$article.title</h2>
               <span class="date">$date</span>
+              <span class="tags">
+                [
+                <ul class="taglist">
+                #for $t in $article.tags
+                  <li><a href="/tags/$t">\#$t</a></li>
+                #end for
+                </ul>
+                ]
+              </span>
             </header>
 
             <section class="content">
