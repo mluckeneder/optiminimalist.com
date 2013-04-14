@@ -1,16 +1,14 @@
 #import time
-#set $date = $time.strftime("%B %Y", $article.date)
+#set $date = $time.strftime("%d %B %Y", $article.date)
 <article class="blogpost ">
             <header class="blog_header">
               <h1 class="list-title">$article.title</h1>
               <span class="date">$date</span>
               <span class="tags">
                 [
-                <ul class="taglist">
                 #for $t in $article.tags
-                  <li><a href="/tags/$t">\#$t</a></li>
+                  <a href="/tags/$t">\#$t</a>
                 #end for
-                </ul>
                 ]
               </span>
             </header>

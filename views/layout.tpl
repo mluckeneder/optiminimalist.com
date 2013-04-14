@@ -33,7 +33,6 @@
 
           <div class="pull-right">
             <a href="http://www.optiminimalist.com">rss</a>
-            <a href="/">about</a>
           </div>
 
       </header>
