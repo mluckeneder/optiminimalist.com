@@ -1,18 +1,8 @@
-<style type="text/css">
-  .taglist li{
-    display:inline;
-  }
-
-  .taglist {
-    display:inline;
-    margin-left: 0;
-  }
-</style>
 #import time
 #set $date = $time.strftime("%B %Y", $article.date)
-<article id="post_1">
+<article class="blogpost">
             <header class="blog_header">
-              <h2>$article.title</h2>
+              <h1 class="list-title">$article.title</h1>
               <span class="date">$date</span>
               <span class="tags">
                 [
@@ -29,7 +19,7 @@
                 $article.content
             </section>
 
-           <!--  <div id="disqus_thread"></div>
+            <!-- <div id="disqus_thread"></div>
             <script type="text/javascript">
                 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
                 var disqus_shortname = 'optiminimalist'; // required: replace example with your forum shortname
@@ -42,11 +32,11 @@
                 })();
             </script>
             <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
-    
+            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ -->    
           </article>
 
-         <section id="article_nav">
+         <section class="article_nav">
          <div id="prev_article" class="pull-left">
           #if $prev_article is not None
              <a href="/$prev_article.id" >&larr; $prev_article.article.title</a>

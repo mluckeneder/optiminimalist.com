@@ -21,29 +21,27 @@
 
     <div class="container">
 
-
-      <!-- Example row of columns -->
-      <div class="row">
         
-        <div class="">
-        <header id="header">
-        <div class="pull-left">
-          <a href="/">optiminimalist.com</a>
-        </div>
 
-        <div class="pull-right">
-          <a href="http://www.optiminimalist.com">rss</a>
-        </div>
+        <header class="pageheader">
+
+          <div class="pull-left">
+            <a href="/">optiminimalist.com</a>
+          </div>
+
+          <div class="pull-right">
+            <a href="http://www.optiminimalist.com">rss</a>
+          </div>
+
       </header>
+
+
           $layout_yield
 
           
-        </div>
 
         
        
-      </div>
-
 
       <hr>
 

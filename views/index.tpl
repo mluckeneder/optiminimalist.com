@@ -1,12 +1,11 @@
 #import time
 
-<section id="articlelist">
+<section class="articlelist">
     #for $id, $article in $articles.items():
-        #* Parse date *#
         #set $date = $time.strftime("%B %Y", $article.date)
-        <article id="post_1">
+        <article class="blogpost">
                     <header class="blog_header">
-                      <h3><a href="/$id">$article.title</a></h3>
+                      <h1 class="list-title"><a href="/$id">$article.title</a></h1>
                       <span class="date">$date</span>
                     </header>
         </article>
