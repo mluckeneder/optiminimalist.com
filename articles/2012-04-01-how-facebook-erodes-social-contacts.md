@@ -1,5 +1,6 @@
 ---
 tags: pandas, python, bigdata
+tldr: Lorem ipsum Aute irure est et consequat ut velit nulla adipisicing officia id commodo sit ea anim.
 ---
 # How Facebook erodes Social Contacts
 

@@ -10,6 +10,7 @@
 
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
     <script src="http://code.jquery.com/jquery.js"></script>
     <!-- Bootstrap -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">

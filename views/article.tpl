@@ -1,6 +1,6 @@
 #import time
 #set $date = $time.strftime("%B %Y", $article.date)
-<article class="blogpost">
+<article class="blogpost ">
             <header class="blog_header">
               <h1 class="list-title">$article.title</h1>
               <span class="date">$date</span>
@@ -15,7 +15,20 @@
               </span>
             </header>
 
-            <section class="content">
+
+            <div class="tldr well">
+              <span class="header">
+                TL;DR
+              </span>
+                $article.tldr
+            </div>
+
+
+
+
+            <br clear="all"/>
+
+            <section class="content ">
                 $article.content
             </section>
 

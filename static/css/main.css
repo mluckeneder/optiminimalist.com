@@ -2,6 +2,8 @@ body {
   padding-top: 10px;
   padding-bottom: 60px;
   font-weight: 300;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size:20px;
 }
 
 p {
@@ -35,13 +37,46 @@ p {
 }
 
 /* Article List */
-.list-title {
-  font-size:1.6em;
+h1 {
+  font-size:1.8em;
   margin-bottom:0;
 }
 
-.list-title a {
+h1 a {
     color: #000000;
+}
+
+h2 {
+  font-size:1.3em;
+}
+
+h3 {
+  font-size:1.0em;
+  color:#555;
+
+}
+
+.tldr {
+  margin-top:10px;
+  margin-bottom:30px;
+  clear:both;
+  width:80%;
+  margin:0 auto;
+  /*padding:0;*/
+  line-height:1.4em;
+  text-align: justify;
+  
+  font-weight:200;
+}
+.tldr .header {
+  
+  font-weight:bold;
+  font-size:1.10em;
+
+}
+
+.tldr .content {
+/*  font-size:1em;*/
 }
 
 
