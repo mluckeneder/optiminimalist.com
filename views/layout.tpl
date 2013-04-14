@@ -27,11 +27,13 @@
         <header class="pageheader">
 
           <div class="pull-left">
-            <a href="/">optiminimalist.com</a>
+            <a href="/"><i class="icon-home icon-black"></i> optiminimalist.com</a> 
+            
           </div>
 
           <div class="pull-right">
             <a href="http://www.optiminimalist.com">rss</a>
+            <a href="/">about</a>
           </div>
 
       </header>
