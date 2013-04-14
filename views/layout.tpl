@@ -15,6 +15,8 @@
     <!-- Bootstrap -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/application.js"></script>
+
     <link href="/static/css/main.css" rel="stylesheet" media="screen">
 
   </head>
@@ -48,7 +50,7 @@
       <hr>
 
       <div class="footer">
-        <p>&copy; 2013 optiminimalist.com</p>
+        <p>&copy; 2013 <a href="mailto:optiminimalist(at)gmail(dot)com">optiminimalist</a></p>
       </div>
 
     </div> <!-- /container -->
