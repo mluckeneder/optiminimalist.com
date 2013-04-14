@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from bottle import Bottle, debug, static_file, response
 from bottle import cheetah_template
-import articles
 from coarticles import ArticleParser, ArticleManager
 from glob import glob
 import os
