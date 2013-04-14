@@ -1,16 +1,19 @@
 $(function(){
     $(document).keydown(function(e){
-        // if (e.keyCode == 37) { 
-            
-        //     prevlink = $("a[rel=prev-article]").attr("href");
-        //     location.href = prevlink;
-        //     return false;        
-        // }
+        var sel = $("a[rel=prev-article]");
+        if (e.keyCode == 37 && sel.length !== 0) { 
 
-        //  if (e.keyCode == 39) { 
-        //     nextlink = $("a[rel=next-article]").attr("href");
-        //     location.href = nextlink;
-        //     return false;
-        // }
+            prevlink = sel.attr("href");
+            location.href = prevlink;
+            return false;        
+        }
+
+        sel = $("a[rel=next-article]");
+         if (e.keyCode == 39 && sel.length !== 0) { 
+
+            nextlink = $("a[rel=next-article]").attr("href");
+            location.href = nextlink;
+            return false;
+        }
     });
 });

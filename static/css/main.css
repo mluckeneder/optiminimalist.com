@@ -122,7 +122,7 @@ a:hover, .list-title:hover {
   padding-left:10px;
   padding-right:10px;
   border-left: solid white 5px;
-  
+  border-right: solid white 5px;
   
 
 }
@@ -151,4 +151,8 @@ a:hover, .list-title:hover {
 
 [class^="icon-"] {
   vertical-align: baseline;
+}
+
+.social {
+  padding:10px;
 }

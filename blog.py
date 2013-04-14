@@ -26,6 +26,13 @@ def serve_robots():
     return open("robots.txt").read()
 
 
+@app.route('/humans.txt')
+def serve_humans():
+    """serves the humans.txt file"""
+    response.content_type = 'text/plain'
+    return open("humans.txt").read()
+
+
 @app.route('/static/<filename:path>')
 def serve_asset(filename):
     """serves static assets"""
