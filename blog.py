@@ -4,6 +4,7 @@ from bottle import cheetah_template
 from coarticles import ArticleParser, ArticleManager
 from glob import glob
 import os
+import time
 
 
 def template_layout(template, *args, **kwargs):
@@ -32,13 +33,21 @@ def serve_humans():
     return open("humans.txt").read()
 
 
+@app.route('/atom.xml')
+def serve_atom():
+    articles = loader.get_all_articles()
+    return cheetah_template("atom",
+                            modtime=time.gmtime(os.path.getmtime("articles")),
+                            articles=articles)
+
+
 @app.route('/static/<filename:path>')
 def serve_asset(filename):
     """serves static assets"""
     return static_file(filename, root='./static')
 
 
-@app.route('/<slug>')
+@app.route('/<slug:path>')
 def article(slug):
     """the page for a single article"""
     article = loader.get_article(slug)
@@ -63,7 +72,8 @@ if __name__ == "__main__":
     manager = ArticleManager()
 
     parser.run_pipeline(glob("articles/*.md"),
-                        manager.add_article())
+                        manager.add_article(),
+                        manager.parse_tags())
 
     loader = manager
 

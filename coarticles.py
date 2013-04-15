@@ -1,7 +1,7 @@
 from glob import glob
 import markdown2
 import time
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from coroutine import coroutine, sink, broadcast
 import os
 import re
@@ -33,6 +33,15 @@ class ArticleParser:
                     article = {'date': article_date,
                                'content': content}
                     target.send((article_slug, article))
+
+    @coroutine
+    def slug_enhance(self, target):
+        while True:
+            article_slug, article = (yield)
+            article_slug = "%s/%s" % (time.strftime("%Y/%m", article["date"]),
+                                      article_slug)
+
+            target.send((article_slug, article))
 
     @coroutine
     def article_sink(self, articles):
@@ -96,7 +105,8 @@ class ArticleParser:
 
     def run_pipeline(self, source, *args):
         sink = broadcast(args)
-        date_parser = self.parse_date(sink)
+        slug_enhancer = self.slug_enhance(sink)
+        date_parser = self.parse_date(slug_enhancer)
         tag_parser = self.parse_tags(date_parser)
         markdown_parser = self.parse_markdown(tag_parser)
         extract_title = self.extract_title(markdown_parser)
@@ -109,6 +119,7 @@ class ArticleManager(object):
     def __init__(self):
         self.articles = OrderedDict()
         self.articles_index = []
+        self.tag_index = defaultdict(OrderedDict)
 
     def get_article(self, slug):
         return self.articles[slug]
@@ -124,6 +135,16 @@ class ArticleManager(object):
         self.articles = OrderedDict(sorted(self.articles.items(),
                                     key=lambda k: k[1]["date"],
                                     reverse=True))
+
+    @coroutine
+    @sink
+    def parse_tags(self, article_slug, article):
+        for tag in article["tags"]:
+            self.tag_index[tag][article_slug] = article
+            # self.tag_index[tag] = OrderedDict(sorted(self.tag_index[tag],
+            #                         key=lambda k: k[1]["date"],
+            #                         reverse=True))
+
 
     @coroutine
     @sink
@@ -164,4 +185,6 @@ if __name__ == "__main__":
     manager = ArticleManager()
 
     parser.run_pipeline(glob("articles/*.md"),
-                        manager.add_article())
+                        manager.add_article(),
+                        manager.parse_tags())
+    print len(manager.tag_index["python"])
