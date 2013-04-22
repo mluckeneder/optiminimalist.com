@@ -30,13 +30,12 @@
 
           <div class="pull-left">
             <a href="/"><i class="icon-home icon-black"></i> optiminimalist.com</a> 
-            
           </div>
-
-<!--           <div class="pull-right">
-            <a href="http://www.optiminimalist.com">rss</a>
-          </div>
- -->
+        <span class="pull-right">
+             <a href="/atom.xml" class="feed"></a>
+            </span>
+    
+ 
       </header>
 
 
@@ -50,7 +49,12 @@
       <hr>
 
       <div class="footer">
-        <p>&copy; 2013 <a href="mailto:optiminimalist(at)gmail(dot)com">optiminimalist</a></p>
+        <p><span class="pull-left">&copy; 2013 <a href="mailto:optiminimalist(at)gmail(dot)com">optiminimalist</a>        </span>
+
+          
+        </p> 
+
+
       </div>
 
     </div> <!-- /container -->

@@ -21,6 +21,12 @@ p {
   margin: 60px 0 10px 0;
 }
 
+.feed {
+  margin-left: 3px;
+  padding: 0 0 0 19px;
+  background: url("/static/img/feed-icon-14x14.png") no-repeat 0 50%;
+}
+
 /* Header */
 
 .pageheader {
