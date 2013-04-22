@@ -16,7 +16,7 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/application.js"></script>
-
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM feed">
     <link href="/static/css/main.css" rel="stylesheet" media="screen">
 
   </head>
