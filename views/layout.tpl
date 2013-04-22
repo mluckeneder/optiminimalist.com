@@ -19,6 +19,7 @@
     <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM feed">
     <link href="/static/css/main.css" rel="stylesheet" media="screen">
 
+
   </head>
   <body>
 
