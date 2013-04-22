@@ -71,6 +71,9 @@ if __name__ == "__main__":
     parser = ArticleParser()
     manager = ArticleManager()
 
+    env = os.environ.get('ENV', 'development')
+
+
     parser.run_pipeline(glob("articles/*.md"),
                         manager.add_article(),
                         manager.parse_tags())
@@ -80,5 +83,4 @@ if __name__ == "__main__":
     debug(True)
     app.run(server='gunicorn',
             host="0.0.0.0",
-            port=os.environ.get('PORT', 5000),
-            reloader=True)
+            port=os.environ.get('PORT', 5000))

@@ -24,7 +24,7 @@ p {
 /* Header */
 
 .pageheader {
-  padding-bottom:60px;
+  padding-bottom:100px;
   color:#aaa;
 
 }
@@ -65,16 +65,18 @@ h3 {
   margin-top:30px;
   margin-bottom:30px;
 }
-
+.content h1 {
+  display:none;
+}
 .tldr {
-  -webkit-box-shadow:  1px 1px 10px 1px rgba(0, 0, 0, 1);
+  /*-webkit-box-shadow:  1px 1px 10px 1px rgba(0, 0, 0, 1);*/
         
-  box-shadow:  1px 1px 10px 1px rgba(0, 0, 0, 1);
-  margin-top:10px;
-  margin-bottom:30px;
-  clear:both;
-  width:80%;
+  /*box-shadow:  1px 1px 10px 1px rgba(0, 0, 0, 1);*/
   margin:0 auto;
+  margin-top:40px;
+  margin-bottom:40px;
+  clear:both;
+  width:60%;
   /*padding:0;*/
   line-height:1.4em;
   text-align: justify;

@@ -7,13 +7,13 @@
                     <header class="blog_header">
                       <h1 class="list-title"><a href="/$id">$article.title</a></h1>
                       <span class="date">$date</span>
-                <span class="tags">
+               <!--  <span class="tags">
                 [
                 #for $t in $article.tags
                   <a href="/tags/$t">\#$t</a>
                 #end for
                 ]
-              </span>
+              </span> -->
                     </header>
         </article>
     #end for

@@ -97,8 +97,9 @@ class ArticleParser:
                 title = match.group(1).strip()
                 print(title)
                 article["title"] = title
-                article["content"] = re.sub(r'^(\#[^\#]+\n).*',
+                article["content"] = re.sub(r'^(\#[^\#]+\n)$',
                                             "", article["content"], count=1)
+                # article["content"]\n".join(article["content"].split("\n")[1:])
                 article["content"] = re.sub("\x02", "", article["content"])
 
             target.send((article_slug, article))

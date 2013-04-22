@@ -4,17 +4,17 @@
             <header class="blog_header">
               <h1 class="list-title">$article.title</h1>
               <span class="date">$date</span>
-              <span class="tags">
+              <!-- <span class="tags">
                 [
                 #for $t in $article.tags
                   <a href="/tags/$t">\#$t</a>
                 #end for
                 ]
-              </span>
+              </span> -->
             </header>
 
 
-            <div class="tldr well">
+            <div class="tldr">
               <span class="header">
                 TL;DR
               </span>
@@ -24,7 +24,7 @@
 
 
 
-            <br clear="all"/>
+            <!-- <br clear="all"/> -->
 
             <section class="content ">
                 $article.content
