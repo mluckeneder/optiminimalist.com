@@ -146,7 +146,6 @@ class ArticleManager(object):
             #                         key=lambda k: k[1]["date"],
             #                         reverse=True))
 
-
     @coroutine
     @sink
     def build_index(self, article_slug, article):

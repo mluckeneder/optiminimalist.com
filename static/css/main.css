@@ -17,8 +17,17 @@ p {
   margin: 0 auto;
   max-width: 800px;
 }
-.container > hr {
+/*.container > hr {
   margin: 60px 0 10px 0;
+}*/
+.container > hr {
+  margin:0;
+}
+.main_content {
+  margin: 10px 0 0 0 ;
+}
+.pageheader > hr {
+  margin:0;
 }
 
 .feed {
@@ -30,13 +39,20 @@ p {
 /* Header */
 
 .pageheader {
-  padding-bottom:100px;
-  color:#aaa;
+  padding-top:50px;
+  padding-bottom:50px;
+  /*color:#aaa;*/
   padding-left:15px;
 }
 
+.subtitle {
+  margin-top:8px;
+}
 .pageheader a {
-  color:#bbb;
+  font-weight:300;
+  /*color:#bbb;*/
+  color:#000;
+  font-size:1.5em;
 }
 
 .pageheader a:hover {
@@ -47,6 +63,7 @@ p {
 /* Article List */
 h1 {
   font-size:1.8em;
+  font-weight:400;
   margin-bottom:0;
 }
 

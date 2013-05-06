@@ -29,16 +29,19 @@
 
         <header class="pageheader">
 
-          <div class="pull-left">
-            <a href="/">optiminimalist.com</a> 
+          <div class="text-center">
+            <a href="/">[optiminimalist.com]</a> 
+            <br/>
+            <div class="subtitle">tech blog</div>
           </div>
        
- 
+          
       </header>
 
-
+        <hr />
+        <div class="main_content">
           $layout_yield
-
+      </div>
           
 
         
