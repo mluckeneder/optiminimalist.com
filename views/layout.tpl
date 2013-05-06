@@ -38,7 +38,7 @@
 
 
 
-        <hr />
+    
         <div class="main_content">
           $layout_yield
       </div>

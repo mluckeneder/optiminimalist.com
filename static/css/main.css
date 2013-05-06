@@ -14,7 +14,9 @@ p {
 
 /* Custom container */
 .container {
-  margin: 0 auto;
+
+  margin:0 auto;
+  padding-top:140px;
   max-width: 800px;
 }
 /*.container > hr {
@@ -41,12 +43,12 @@ p {
 .pageheader {
   padding-top:23px;
   padding-bottom:23px;
-  margin-bottom:50px;
   width:100%;
   /*color:#aaa;*/
   padding-left:15px;
   background-color: #333;
   color:#fff;
+  position: fixed;
 }
 
 .subtitle {
