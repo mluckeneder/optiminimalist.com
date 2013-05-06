@@ -165,8 +165,8 @@ a:hover, .list-title:hover {
 .blogpost {
   padding-left:10px;
   padding-right:10px;
-  border-left: solid white 5px;
-  border-right: solid white 5px;
+  border-left: solid transparent 5px;
+  border-right: solid transparent 5px;
   
 
 }
