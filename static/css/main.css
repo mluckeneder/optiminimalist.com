@@ -28,7 +28,7 @@ p {
   margin:0;
 }
 .main_content {
-  margin: 10px 0 0 0 ;
+  margin: 10px 0 50px 0 ;
 }
 .pageheader > hr {
   margin:0;
@@ -43,11 +43,10 @@ p {
 /* Header */
 
 .pageheader {
-  padding-top:23px;
-  padding-bottom:23px;
+  padding-top:24px;
+  padding-bottom:24px;
   width:100%;
   /*color:#aaa;*/
-  padding-left:15px;
   background-color: #333;
   color:#fff;
   position: fixed;
