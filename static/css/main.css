@@ -1,5 +1,5 @@
 body {
-  padding-top: 10px;
+  /*padding-top: 10px;*/
   padding-bottom: 60px;
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
@@ -39,10 +39,14 @@ p {
 /* Header */
 
 .pageheader {
-  padding-top:50px;
-  padding-bottom:50px;
+  padding-top:23px;
+  padding-bottom:23px;
+  margin-bottom:50px;
+  width:100%;
   /*color:#aaa;*/
   padding-left:15px;
+  background-color: #333;
+  color:#fff;
 }
 
 .subtitle {
@@ -51,7 +55,7 @@ p {
 .pageheader a {
   font-weight:300;
   /*color:#bbb;*/
-  color:#000;
+  color:#fff;
   font-size:1.5em;
 }
 
@@ -59,6 +63,7 @@ p {
   color:#DF7401;
   text-decoration: none;
 }
+
 
 /* Article List */
 h1 {
