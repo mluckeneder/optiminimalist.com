@@ -9,6 +9,7 @@
       optiminimalist.com
 
     </title>
+    <meta name="google-site-verification" content="CNdKuw7wImxOxK_wN5-lnY0ycJ0teXcn4bflTmPaaMw" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
     <script src="http://code.jquery.com/jquery.js"></script>
