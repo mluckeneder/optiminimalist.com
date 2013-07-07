@@ -6,6 +6,21 @@ from coroutine import coroutine, sink, broadcast
 import os
 import re
 
+manager = None
+
+
+def create_manager():
+    global manager
+    if manager is None:
+        parser = ArticleParser()
+        manager = ArticleManager()
+
+        parser.run_pipeline(glob("articles/*.md"),
+                            manager.add_article(),
+                            manager.parse_tags())
+
+    return manager
+
 
 class ArticleParser:
     def __init__(self):

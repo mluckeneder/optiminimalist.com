@@ -2,22 +2,10 @@
 from bottle import Bottle, debug, static_file, response
 from bottle import cheetah_template
 from coarticles import ArticleParser, ArticleManager
+from coarticles import create_manager as manager
 from glob import glob
 import os
 import time
-
-
-manager = None
-
-
-def _initialize():
-    print "Init"
-    parser = ArticleParser()
-    manager = ArticleManager()
-
-    parser.run_pipeline(glob("articles/*.md"),
-                        manager.add_article(),
-                        manager.parse_tags())
 
 
 def template_layout(template, *args, **kwargs):
@@ -48,7 +36,7 @@ def serve_humans():
 
 @app.route('/atom.xml')
 def serve_atom():
-    articles = manager.get_all_articles()
+    articles = manager().get_all_articles()
     return cheetah_template("atom",
                             modtime=time.gmtime(os.path.getmtime("articles")),
                             articles=articles)
@@ -63,9 +51,9 @@ def serve_asset(filename):
 @app.route('/<slug:path>')
 def article(slug):
     """the page for a single article"""
-    article = manager.get_article(slug)
-    next_article = manager.get_next_article(slug)
-    prev_article = manager.get_prev_article(slug)
+    article = manager().get_article(slug)
+    next_article = manager().get_next_article(slug)
+    prev_article = manager().get_prev_article(slug)
 
     return template_layout("article", article=article,
                            prev_article=prev_article,
@@ -76,13 +64,11 @@ def article(slug):
 @app.route('/')
 def index():
     """the index page"""
-    arts = manager.get_all_articles()
+    arts = manager().get_all_articles()
     return template_layout("index", articles=arts)
 
 
 if __name__ == "__main__":
-
-    manager = manager
 
     debug(True)
     app.run(server='gunicorn',
