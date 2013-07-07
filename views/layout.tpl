@@ -28,7 +28,7 @@
           <div class="text-center">
             <a href="/">[optiminimalist.com]</a> 
             <br/>
-            <div class="subtitle">tech blog</div>
+            <div class="subtitle">a blog</div>
           </div>
        
           
