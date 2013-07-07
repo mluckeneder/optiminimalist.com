@@ -7,6 +7,19 @@ import os
 import time
 
 
+manager = None
+
+
+def _initialize():
+    print "Init"
+    parser = ArticleParser()
+    manager = ArticleManager()
+
+    parser.run_pipeline(glob("articles/*.md"),
+                        manager.add_article(),
+                        manager.parse_tags())
+
+
 def template_layout(template, *args, **kwargs):
     layout_yield = cheetah_template(template, args, kwargs)
     kwargs_more = dict(kwargs.items() + {"layout_yield": layout_yield}.items())
@@ -68,14 +81,6 @@ def index():
 
 
 if __name__ == "__main__":
-    parser = ArticleParser()
-    manager = ArticleManager()
-
-    env = os.environ.get('ENV', 'development')
-
-    parser.run_pipeline(glob("articles/*.md"),
-                        manager.add_article(),
-                        manager.parse_tags())
 
     manager = manager
 
