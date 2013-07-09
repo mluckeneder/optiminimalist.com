@@ -3,7 +3,7 @@ venv
 .DS_Store
 # C extensions
 *.so
-
+cache_files
 # Packages
 *.egg
 *.egg-info
