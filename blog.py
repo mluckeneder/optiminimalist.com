@@ -34,6 +34,10 @@ def template_layout(template, *args, **kwargs):
 
 app = Bottle()
 
+@app.route('/mu-e5e1ca4e-dec46de1-f1674442-c0ebb5bb')
+def serve_blitz():
+	return "42"
+
 
 @app.route('/robots.txt')
 def serve_robots():
