@@ -48,9 +48,11 @@ p {
   padding-bottom:24px;
   width:100%;
   /*color:#aaa;*/
-  background-color: #333;
-  color:#fff;
+  /*background-color: #333;*/
+  background-color: #fff;
+  /*color:#fff;*/
   position: fixed;
+  border-bottom:1px dotted #bbb;
 }
 
 .subtitle {
@@ -58,8 +60,8 @@ p {
 }
 .pageheader a {
   font-weight:300;
-  /*color:#bbb;*/
-  color:#fff;
+  color:#333;
+  /*color:#000;*/
   font-size:1.5em;
 }
 
