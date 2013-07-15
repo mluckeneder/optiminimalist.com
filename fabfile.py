@@ -21,4 +21,5 @@ def deploy():
 def reload_nginx():
     """reloads nginx
     """
+    sudo("supervisorctl restart")
     sudo("service nginx reload")
