@@ -33,7 +33,6 @@ class ArticleParser:
 
     @coroutine
     def article_reader(self, target):
-        print(">>Reading files")
         while True:
             file_name = (yield)
             with open(file_name) as f:
@@ -63,13 +62,11 @@ class ArticleParser:
         try:
             while True:
                 article_slug, article = (yield)
-                # print((article_slug, article))
         except GeneratorExit:
-            print(">>Finished parsing files")
+            pass
 
     @coroutine
     def parse_date(self, target):
-        print(">>Parsing date")
         while True:
             article_slug, article = (yield)
             converted_date = time.strptime(article["date"], "%Y-%m-%d")
@@ -79,7 +76,6 @@ class ArticleParser:
 
     @coroutine
     def parse_markdown(self, target):
-        print(">>Parsing markdown")
         while True:
             article_slug, article = (yield)
             html = markdown2.markdown(article["content"],
@@ -110,7 +106,6 @@ class ArticleParser:
 
             if match:
                 title = match.group(1).strip()
-                print(title)
                 article["title"] = title
                 article["content"] = re.sub(r'^(\#[^\#]+\n)$',
                                             "", article["content"], count=1)

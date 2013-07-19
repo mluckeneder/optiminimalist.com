@@ -23,7 +23,8 @@ def sink(func):
                 article_slug, article = (yield)
                 func(self, article_slug, article, *args, **kwargs)
         except GeneratorExit:
-            print("Done!")
+            pass
+            # print("Done!")
     return start
 
 
