@@ -58,14 +58,14 @@ $article.title
            <section class="article_nav">
          <div id="prev_article" class="pull-left">
           #if $prev_article is not None
-             #set $link = "/%s.html" % ($prev_article.id)
+             #set $link = "/%s" % ($prev_article.id)
              <a href="$link" rel="prev-article">&larr; $prev_article.article.title</a>
           #end if
          </div>
 
           <div id="next_article" class="pull-right">
           #if $next_article is not None
-             #set $link = "/%s.html" % ($next_article.id)
+             #set $link = "/%s" % ($next_article.id)
              <a href="$link" rel="next-article">$next_article.article.title &rarr;</a>
           #end if
           </div>

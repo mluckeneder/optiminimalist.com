@@ -19,7 +19,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r'/', HomeHandler),
             (r'/atom\.xml', AtomHandler),
-            (r'/([0-9]+)/([0-9]+)/([^\/]+).html', PostHandler)
+            (r'/([0-9]+)/([0-9]+)/([^\/]+)', PostHandler)
         ]
 
         settings = {
