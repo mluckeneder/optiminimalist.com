@@ -9,7 +9,7 @@ class HomeHandler(tornado.web.RequestHandler):
     def get(self):
         arts = manager().get_all_articles()
 
-        self.write(str(Template(file="views/index.tmpl", searchList=[dict(articles=arts)])))
+        self.write(str(Template(file="./views/index.tmpl", searchList=[dict(articles=arts)])))
 
 class PostHandler(tornado.web.RequestHandler):
     def get(self, year, month, slug):
@@ -33,5 +33,5 @@ class AtomHandler(tornado.web.RequestHandler):
         arts = manager().get_all_articles()
         articles = manager().get_all_articles()
 
-        self.write(str(Template(file="views/atom.tmpl", searchList=[dict(modtime=time.gmtime(os.path.getmtime("articles")),
+        self.write(str(Template(file="./views/atom.tmpl", searchList=[dict(modtime=time.gmtime(os.path.getmtime("articles")),
             articles=arts)])))
