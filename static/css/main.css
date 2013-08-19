@@ -104,7 +104,7 @@ h3 {
 }
 .tldr {
   /*-webkit-box-shadow:  1px 1px 10px 1px rgba(0, 0, 0, 1);*/
-        
+
   /*box-shadow:  1px 1px 10px 1px rgba(0, 0, 0, 1);*/
   margin:0 auto;
   margin-top:40px;
@@ -114,11 +114,11 @@ h3 {
   /*padding:0;*/
   line-height:1.4em;
   text-align: justify;
-  
+
   font-weight:200;
 }
 .tldr .header {
-  
+
   font-weight:bold;
   font-size:1.10em;
 
@@ -170,7 +170,7 @@ a:hover, .list-title:hover {
   padding-right:10px;
   border-left: solid transparent 5px;
   border-right: solid transparent 5px;
-  
+
 
 }
 .articlelist .blogpost:hover {
@@ -202,4 +202,10 @@ a:hover, .list-title:hover {
 
 .social {
   padding:10px;
+}
+
+pre {
+  background-color:inherit !important;
+  font-size: inherit !important;
+
 }

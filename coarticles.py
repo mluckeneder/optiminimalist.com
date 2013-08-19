@@ -10,6 +10,7 @@ manager = None
 
 
 def create_manager():
+    """creates an article manager"""
     global manager
     if manager is None:
         parser = ArticleParser()
@@ -23,12 +24,14 @@ def create_manager():
 
 
 class ArticleParser:
+    """parses articles"""
     def __init__(self):
         self.articles = OrderedDict()
 
-    def parse_article_list(self, files, target):
-        for f in files:
-            target.send(f)
+    def parse_article_list(self, article_files, target):
+        """parses the article list using chained coroutines"""
+        for article in article_files:
+            target.send(article)
         target.close()
 
     @coroutine
