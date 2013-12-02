@@ -6,19 +6,19 @@
         <link href="http://www.optiminimalist.com/atom.xml" rel="self" />
         <link href="http://www.optiminimalist.com/" />
 
-        #import time
-        <updated>$time.strftime('%Y-%m-%dT%H:%M:%S.Z', $modtime)</updated>
+        <% import time %>
+        <updated>${time.strftime('%Y-%m-%dT%H:%M:%S.Z', modtime)}</updated>
 
-        #for $id, $article in $articles.items(): 
+        % for id, article in articles:
             <entry>
-                    <title>$article.title</title>
-                    <link href="http://www.optiminimalist.com/$id" />
-                    <updated>$time.strftime('%Y-%m-%dT%H:%M:%S.Z', $article.date)</updated>
-                    <summary>$article.tldr</summary>
+                    <title>${article['title']}</title>
+                    <link href="http://www.optiminimalist.com/${id}" />
+                    <updated>${time.strftime('%Y-%m-%dT%H:%M:%S.Z', article['date'])}</updated>
+                    <summary>${article['tldr']}</summary>
                     <author>
                           <name>optiminimalist</name>
                           <email>optiminimalist@gmail.com</email>
                     </author>
             </entry>
-        #end for
+        % endfor
 </feed>
