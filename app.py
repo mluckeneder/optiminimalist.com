@@ -1,43 +1,56 @@
-import tornado.web
-import tornado.httpserver
-from tornado.options import define, options
-from handlers import HomeHandler, PostHandler, AtomHandler
+from flask import Flask, request, make_response
+from flask.ext.mako import MakoTemplates
+from flask.ext.mako import render_template
+
 import os
-import sys
-sys.path.append("./views")
+import time
+
+from coarticles import create_manager as manager
+
+app = Flask(__name__, static_folder='static')
+mako = MakoTemplates(app)
 
 
-PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-define("port", default=8888, help="run on the given port", type=int)
-define("debug", default=False, type=bool)
+@app.route('/')
+def index():
+    arts = manager().get_all_articles()
+    return render_template('index.html', articles=arts.items())
 
+@app.route('/atom.xml')
+def atom():
+    arts = manager().get_all_articles()
 
+    response = make_response(
+        render_template(
+        'atom.mako',
+        modtime=time.gmtime(os.path.getmtime("articles")),
+        articles=arts.items()
+        )
+    )
+    response.headers['Content-Type'] = 'application/atom+xml'
+    return response
 
-class Application(tornado.web.Application):
-    def __init__(self):
+@app.route('/<int:year>/<int:month>/<slug>')
+def show_post(year, month, slug):
+    article_key = "/".join(
+        (
+            "%02d" % year,
+            "%02d" % month,
+            slug
+        )
+    )
+    article = manager().get_article(article_key)
 
-        handlers = [
-            (r'/', HomeHandler),
-            (r'/atom\.xml', AtomHandler),
-            (r'/([0-9]+)/([0-9]+)/([^\/]+)', PostHandler)
-        ]
+    next_article = manager().get_next_article(article_key)
+    prev_article = manager().get_prev_article(article_key)
 
-        settings = {
-            'template_path': os.path.join(PROJECT_PATH, 'templates'),
-            'static_path': os.path.join(PROJECT_PATH, 'static'),
-            'debug': True,
-        }
-        tornado.web.Application.__init__(self, handlers, **settings)
-
-def main():
-    """launch server"""
-    tornado.options.parse_command_line()
-    print 'Running server on port %s...' % options.port
-    http_server = tornado.httpserver.HTTPServer(Application())
-    http_server.listen(options.port)
-    tornado.ioloop.IOLoop.instance().start()
-
-
+    return render_template(
+        'article.mako',
+        article=article,
+        prev_article=prev_article,
+        next_article=next_article,
+        pagetitle=article["title"]
+    )
 
 if __name__ == '__main__':
-    main()
+    app.run(debug=True)
