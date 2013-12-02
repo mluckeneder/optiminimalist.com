@@ -1,9 +1,0 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
-
-# TECHNOLOGY COLOPHON
-
-    HTML5, CSS
-    Twitter Bootstrap, jQuery
-    Python 2.7.4, bottle.py
-    Markdown2

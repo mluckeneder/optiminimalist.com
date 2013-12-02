@@ -1,0 +1,16 @@
+<%inherit file="layout.html"/>
+<section class="articlelist">
+    % for article_id, article in articles:
+        <article class="blogpost">
+                    <header class="blog_header">
+                      <h1 class="list-title"><a href="${ '/%s' % article_id }">${article['title']}</a></h1>
+                      <span class="date">${format_date(article['date'])}</span>
+                    </header>
+        </article>
+    % endfor
+</section>
+
+<%def name="format_date(d)">
+    <% import time %>
+    ${time.strftime("%B %d, %Y", d)}
+</%def>
