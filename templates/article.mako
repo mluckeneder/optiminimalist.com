@@ -1,16 +1,15 @@
-#import time
-#extends layout
-#def pagetitle
-$article.title
-#end def
+<%inherit file="layout.html"/>
+<% import time %>
+<%def name="format_date(d)">
+    <% import time %>
+    ${time.strftime("%B %d, %Y", d)}
+</%def>
 
 
-#def body
-#set $date = $time.strftime("%d %B %Y", $article.date)
 <article class="blogpost ">
             <header class="blog_header">
-              <h1 class="list-title">$article.title</h1>
-              <span class="date">$date</span>
+              <h1 class="list-title">${article['title']}</h1>
+              <span class="date">${format_date(article['date'])}</span>
               <!-- <span class="tags">
                 [
                 #for $t in $article.tags
@@ -25,7 +24,7 @@ $article.title
               <span class="header">
                 TL;DR
               </span>
-                $article.tldr
+                ${article['tldr']}
             </div>
 
 
@@ -34,7 +33,7 @@ $article.title
             <!-- <br clear="all"/> -->
 
             <section class="content ">
-                $article.content
+                ${article['content']}
             </section>
 
             <section class="social text-center">
@@ -57,21 +56,19 @@ $article.title
 
            <section class="article_nav">
          <div id="prev_article" class="pull-left">
-          #if $prev_article is not None
-             #set $link = "/%s" % ($prev_article.id)
-             <a href="$link" rel="prev-article">&larr; $prev_article.article.title</a>
-          #end if
+          % if prev_article is not None:
+             <a href="${"/%s" % (prev_article['id'])}" rel="prev-article">&larr; ${prev_article['article']['title']}</a>
+          % endif
          </div>
 
           <div id="next_article" class="pull-right">
-          #if $next_article is not None
-             #set $link = "/%s" % ($next_article.id)
-             <a href="$link" rel="next-article">$next_article.article.title &rarr;</a>
-          #end if
+          % if next_article is not None:
+             <a href="${"/%s" % (next_article['id'])}" rel="next-article">${next_article['article']['title']} &rarr;</a>
+          % endif
           </div>
       </section>
       <br/>
-            <hr/>
+            <!-- <hr/> -->
             <!--
             <div id="disqus_thread"></div>
             <script type="text/javascript">
@@ -89,4 +86,3 @@ $article.title
             <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
 
           </article>
-#end def
