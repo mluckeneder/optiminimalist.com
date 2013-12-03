@@ -82,8 +82,7 @@ class ArticleParser:
         while True:
             article_slug, article = (yield)
             html = markdown2.markdown(article["content"],
-                                      extras=["metadata", "footnotes"])
-
+                                      extras=["metadata", "footnotes", "fenced-code-blocks", "codehilite"])
             article["content"] = html
             article = dict(article, **html.metadata)
 
