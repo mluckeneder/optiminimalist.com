@@ -1,5 +1,9 @@
 <%inherit file="layout.html"/>
+
 <section class="articlelist">
+    % if not articles:
+        No blog posts yet :(
+    % endif
     % for article_id, article in articles:
         <article class="blogpost">
                     <header class="blog_header">

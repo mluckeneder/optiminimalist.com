@@ -1,4 +1,5 @@
 ---
+hidden: true
 tags:
 tldr: Virtualenv and Virtualenvwrapper provide a simple way to manage multiple Python versions
 ---

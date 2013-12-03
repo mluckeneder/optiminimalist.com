@@ -92,6 +92,8 @@ class ArticleParser:
     def parse_tags(self, target):
         while True:
             article_slug, article = (yield)
+            if "hidden" in article:
+                continue
             if "tags" in article:
                 tags = article["tags"].split(",")
                 article["tags"] = [t.strip() for t in tags]
@@ -111,7 +113,6 @@ class ArticleParser:
                 article["title"] = title
                 article["content"] = re.sub(r'^(\#[^\#]+\n)$',
                                             "", article["content"], count=1)
-                # article["content"]\n".join(article["content"].split("\n")[1:])
                 article["content"] = re.sub("\x02", "", article["content"])
 
             target.send((article_slug, article))
