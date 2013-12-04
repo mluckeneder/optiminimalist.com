@@ -1,4 +1,4 @@
-<%inherit file="layout.html"/>
+<%inherit file="layout.mako"/>
 <% import time %>
 <%def name="format_date(d)">
     <% import time %>

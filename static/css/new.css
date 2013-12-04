@@ -1,0 +1,28 @@
+body {
+  font-weight: 300;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size:20px;
+  width:100%;
+  padding-left: 0;
+}
+
+h1 {
+  /*font-weight:normal;*/
+  font-family: 'Source Sans Pro', sans-serif;
+
+}
+
+.pageheader {
+  padding: 20px 15px 5px 15px;
+  text-align: center;
+  border-bottom:1px solid #eee;
+}
+
+.pageheader h1:hover {
+  color:#DF7401;
+  text-decoration: none;
+}
+
+.footer {
+  font-size:0.8em;
+}
